@@ -1,0 +1,110 @@
+Xavier Gonzalez
+Big Data Management and Analytics - Session: MongoDB
+May 20th, 2016
+
+4.1
+---
+
+Q1:
+
+db.restaurants.find({"borough": "Manhattan"})
+
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fa11"), "address" : { "building" : "351", "coord" : [ -73.98513559999999, 40.7676919 ], "street" : "West   57 Street", "zipcode" : "10019" }, "borough" : "Manhattan", "cuisine" : "Irish", "grades" : [ { "date" : ISODate("2014-09-06T00:00:00Z"), "grade" : "A", "score" : 2 }, { "date" : ISODate("2013-07-22T00:00:00Z"), "grade" : "A", "score" : 11 }, { "date" : ISODate("2012-07-31T00:00:00Z"), "grade" : "A", "score" : 12 }, { "date" : ISODate("2011-12-29T00:00:00Z"), "grade" : "A", "score" : 12 } ], "name" : "Dj Reynolds Pub And Restaurant", "restaurant_id" : "30191841" }
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fa1f"), "address" : { "building" : "522", "coord" : [ -73.95171, 40.767461 ], "street" : "East   74 Street", "zipcode" : "10021" }, "borough" : "Manhattan", "cuisine" : "American ", "grades" : [ { "date" : ISODate("2014-09-02T00:00:00Z"), "grade" : "A", "score" : 12 }, { "date" : ISODate("2013-12-19T00:00:00Z"), "grade" : "B", "score" : 16 }, { "date" : ISODate("2013-05-28T00:00:00Z"), "grade" : "A", "score" : 9 }, { "date" : ISODate("2012-12-07T00:00:00Z"), "grade" : "A", "score" : 13 }, { "date" : ISODate("2012-03-29T00:00:00Z"), "grade" : "A", "score" : 11 } ], "name" : "Glorious Food", "restaurant_id" : "40361521" }
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fa22"), "address" : { "building" : "759", "coord" : [ -73.9925306, 40.7309346 ], "street" : "Broadway", "zipcode" : "10003" }, "borough" : "Manhattan", "cuisine" : "Delicatessen", "grades" : [ { "date" : ISODate("2014-01-21T00:00:00Z"), "grade" : "A", "score" : 12 }, { "date" : ISODate("2013-01-04T00:00:00Z"), "grade" : "A", "score" : 11 }, { "date" : ISODate("2012-06-07T00:00:00Z"), "grade" : "A", "score" : 6 }, { "date" : ISODate("2012-01-17T00:00:00Z"), "grade" : "A", "score" : 8 } ], "name" : "Bully'S Deli", "restaurant_id" : "40361708" }
+...
+
+Q2:
+
+db.restaurants.find({"borough": "Manhattan", "grades.score": { $gt: 10 } } )
+
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fa11"), "address" : { "building" : "351", "coord" : [ -73.98513559999999, 40.7676919 ], "street" : "West   57 Street", "zipcode" : "10019" }, "borough" : "Manhattan", "cuisine" : "Irish", "grades" : [ { "date" : ISODate("2014-09-06T00:00:00Z"), "grade" : "A", "score" : 2 }, { "date" : ISODate("2013-07-22T00:00:00Z"), "grade" : "A", "score" : 11 }, { "date" : ISODate("2012-07-31T00:00:00Z"), "grade" : "A", "score" : 12 }, { "date" : ISODate("2011-12-29T00:00:00Z"), "grade" : "A", "score" : 12 } ], "name" : "Dj Reynolds Pub And Restaurant", "restaurant_id" : "30191841" }
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fa1f"), "address" : { "building" : "522", "coord" : [ -73.95171, 40.767461 ], "street" : "East   74 Street", "zipcode" : "10021" }, "borough" : "Manhattan", "cuisine" : "American ", "grades" : [ { "date" : ISODate("2014-09-02T00:00:00Z"), "grade" : "A", "score" : 12 }, { "date" : ISODate("2013-12-19T00:00:00Z"), "grade" : "B", "score" : 16 }, { "date" : ISODate("2013-05-28T00:00:00Z"), "grade" : "A", "score" : 9 }, { "date" : ISODate("2012-12-07T00:00:00Z"), "grade" : "A", "score" : 13 }, { "date" : ISODate("2012-03-29T00:00:00Z"), "grade" : "A", "score" : 11 } ], "name" : "Glorious Food", "restaurant_id" : "40361521" }
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fa22"), "address" : { "building" : "759", "coord" : [ -73.9925306, 40.7309346 ], "street" : "Broadway", "zipcode" : "10003" }, "borough" : "Manhattan", "cuisine" : "Delicatessen", "grades" : [ { "date" : ISODate("2014-01-21T00:00:00Z"), "grade" : "A", "score" : 12 }, { "date" : ISODate("2013-01-04T00:00:00Z"), "grade" : "A", "score" : 11 }, { "date" : ISODate("2012-06-07T00:00:00Z"), "grade" : "A", "score" : 6 }, { "date" : ISODate("2012-01-17T00:00:00Z"), "grade" : "A", "score" : 8 } ], "name" : "Bully'S Deli", "restaurant_id" : "40361708" }
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fa24"), "address" : { "building" : "502", "coord" : [ -73.976112, 40.786714 ], "street" : "Amsterdam Avenue", "zipcode" : "10024" }, "borough" : "Manhattan", "cuisine" : "Chicken", "grades" : [ { "date" : ISODate("2014-09-15T00:00:00Z"), "grade" : "A", "score" : 10 }, { "date" : ISODate("2014-03-04T00:00:00Z"), "grade" : "A", "score" : 13 }, { "date" : ISODate("2013-07-18T00:00:00Z"), "grade" : "A", "score" : 13 }, { "date" : ISODate("2013-01-09T00:00:00Z"), "grade" : "A", "score" : 11 }, { "date" : ISODate("2012-04-10T00:00:00Z"), "grade" : "A", "score" : 10 }, { "date" : ISODate("2011-11-15T00:00:00Z"), "grade" : "A", "score" : 7 } ], "name" : "Harriet'S Kitchen", "restaurant_id" : "40362098" }
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fa25"), "address" : { "building" : "730", "coord" : [ -73.96805719999999, 40.7925587 ], "street" : "Columbus Avenue", "zipcode" : "10025" }, "borough" : "Manhattan", "cuisine" : "American ", "grades" : [ { "date" : ISODate("2014-09-12T00:00:00Z"), "grade" : "B", "score" : 26 }, { "date" : ISODate("2013-08-28T00:00:00Z"), "grade" : "A", "score" : 9 }, { "date" : ISODate("2013-03-25T00:00:00Z"), "grade" : "B", "score" : 20 }, { "date" : ISODate("2012-02-14T00:00:00Z"), "grade" : "A", "score" : 12 } ], "name" : "P & S Deli Grocery", "restaurant_id" : "40362264" }
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fa26"), "address" : { "building" : "18", "coord" : [ -73.996984, 40.72589 ], "street" : "West Houston Street", "zipcode" : "10012" }, "borough" : "Manhattan", "cuisine" : "American ", "grades" : [ { "date" : ISODate("2014-04-03T00:00:00Z"), "grade" : "A", "score" : 9 }, { "date" : ISODate("2013-04-05T00:00:00Z"), "grade" : "A", "score" : 4 }, { "date" : ISODate("2012-03-21T00:00:00Z"), "grade" : "A", "score" : 13 }, { "date" : ISODate("2011-04-27T00:00:00Z"), "grade" : "A", "score" : 5 } ], "name" : "Angelika Film Center", "restaurant_id" : "40362274" }
+...
+
+Q3:
+
+count cuisine types:
+db.restaurants.aggregate(    [      { $group: { "_id": "$cuisine", "avg score": { $sum: 1 } } }    ] );
+
+Q3:
+db.restaurants.aggregate([
+    {
+        "$unwind": "$grades"
+    },
+    {
+        "$group": {
+            
+                "_id": "$cuisine",
+            
+
+            "score_average": {
+                "$avg": "$grades.score"
+            }
+        }
+    }
+])
+
+{ "_id" : "Chilean", "score_average" : 6 }
+{ "_id" : "Hawaiian", "score_average" : 15.545454545454545 }
+{ "_id" : "Southwestern", "score_average" : 11.966666666666667 }
+{ "_id" : "Hotdogs/Pretzels", "score_average" : 5.588235294117647 }
+{ "_id" : "Australian", "score_average" : 9.652173913043478 }
+{ "_id" : "Salads", "score_average" : 8.96774193548387 }
+{ "_id" : "Czech", "score_average" : 10.12 }
+{ "_id" : "Bangladeshi", "score_average" : 13.797101449275363 }
+{ "_id" : "Pakistani", "score_average" : 13.699115044247788 }
+{ "_id" : "Peruvian", "score_average" : 13.14864864864865 }
+{ "_id" : "Soups & Sandwiches", "score_average" : 8.971098265895954 }
+{ "_id" : "Nuts/Confectionary", "score_average" : 7.217391304347826 }
+{ "_id" : "CafÃ©/Coffee/Tea", "score_average" : 10.142857142857142 }
+{ "_id" : "Vietnamese/Cambodian/Malaysia", "score_average" : 13.107913669064748 }
+{ "_id" : "Afghan", "score_average" : 11.26 }
+{ "_id" : "Brazilian", "score_average" : 12.257731958762887 }
+{ "_id" : "Juice, Smoothies, Fruit Salads", "score_average" : 8.752043596730244 }
+{ "_id" : "Filipino", "score_average" : 12.92156862745098 }
+{ "_id" : "Tapas", "score_average" : 11.604395604395604 }2016-05-20_-_MongoDB
+{ "_id" : "Chinese/Japanese", "score_average" : 14.866666666666667 }
+...
+
+db.restaurants.aggregate([
+    {
+        "$unwind": "$grades"
+    }
+])
+
+??: db.restaurants.aggregate({$group: {_id: "$cuisine", ratings: {$push: "$grades"}, average: {$avg: "$grades.score"}}})
+
+
+Q4:
+
+db.restaurants.ensureIndex({ "address.coord": "2dsphere" })
+var coord=db.restaurants.findOne({"name":"The Assembly Bar"}).address.coord
+db.restaurants.find ( 
+	{ 
+		"address.coord":   
+			{ 
+				$near :     
+					{ 
+						$geometry:       
+							{ 
+								type: "Point",  
+								coordinates: coord 
+							},         
+						$maxDistance: 150    
+					}   
+			} 
+	} )
+
+
+{ "_id" : ObjectId("573cfb7bf4a109cc5ba6fad6"), "address" : { "building" : "7302", "coord" : [ -73.876876, 40.703885 ], "street" : "Cooper Avenue", "zipcode" : "11385" }, "borough" : "Queens", "cuisine" : "American ", "grades" : [ { "date" : ISODate("2014-02-15T00:00:00Z"), "grade" : "A", "score" : 4 }, { "date" : ISODate("2012-12-26T00:00:00Z"), "grade" : "A", "score" : 12 }, { "date" : ISODate("2012-08-09T00:00:00Z"), "grade" : "A", "score" : 12 }, { "date" : ISODate("2012-03-13T00:00:00Z"), "grade" : "A", "score" : 7 }, { "date" : ISODate("2011-03-03T00:00:00Z"), "grade" : "A", "score" : 6 } ], "name" : "The Assembly Bar", "restaurant_id" : "40367481" }
+{ "_id" : ObjectId("573cfb7cf4a109cc5ba6fe4f"), "address" : { "building" : "71-35", "coord" : [ -73.8760006, 40.7046102 ], "street" : "73 Place", "zipcode" : "11385" }, "borough" : "Queens", "cuisine" : "American ", "grades" : [ { "date" : ISODate("2014-04-17T00:00:00Z"), "grade" : "A", "score" : 6 }, { "date" : ISODate("2013-11-12T00:00:00Z"), "grade" : "A", "score" : 6 }, { "date" : ISODate("2013-06-06T00:00:00Z"), "grade" : "A", "score" : 9 }, { "date" : ISODate("2012-05-25T00:00:00Z"), "grade" : "A", "score" : 5 }, { "date" : ISODate("2011-06-15T00:00:00Z"), "grade" : "A", "score" : 12 } ], "name" : "Home Deli & Catering", "restaurant_id" : "40398416" }
+
+4.2
+---
+
+attached java files Exercise_2_model_1.java, Exercise_2_model_2.java, Exercise_2_model_3.java
